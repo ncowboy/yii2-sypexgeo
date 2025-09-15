@@ -57,8 +57,36 @@ class SxGeo {
 
 	public $batch_mode  = false;
 	public $memory_mode = false;
+    /**
+     * @var mixed
+     */
+    private $b_idx_len;
+    /**
+     * @var mixed
+     */
+    private $id_len;
+    /**
+     * @var int|mixed
+     */
+    private $block_len;
+    /**
+     * @var mixed
+     */
+    private $max_region;
+    /**
+     * @var mixed
+     */
+    private $max_city;
+    /**
+     * @var mixed
+     */
+    private $max_country;
+    /**
+     * @var false|string|string[]
+     */
+    private $pack;
 
-	public function __construct($db_file = 'SxGeo.dat', $type = self::SXGEO_FILE){
+    public function __construct($db_file = 'SxGeo.dat', $type = self::SXGEO_FILE){
 		$this->fh = fopen($db_file, 'rb');
 		// Сначала убеждаемся, что есть файл базы данных
 		$header = fread($this->fh, 40); // В версии 2.2 заголовок увеличился на 8 байт
